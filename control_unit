@@ -1,0 +1,19 @@
+module control_unit(
+                        input clk,
+                        input [7:0] inst,
+                        output reg [1:0] ra_addr,
+                        output reg [1:0] rb_addr,
+                        output reg [1:0] rd_addr,
+                        output reg [1:0] opcode,
+                        output reg [3:0] memval
+                        );
+
+always @(clk)
+begin
+        opcode [1:0] = inst[7:6];
+        rd_addr [1:0] = inst[5:4];
+        ra_addr [1:0] = inst[3:2];
+        rb_addr [1:0] = inst[1:0];
+        memval [3:0] = inst[3:0];
+end
+endmodule
