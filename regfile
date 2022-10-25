@@ -1,0 +1,29 @@
+module regfile(
+                  input clk,
+                  input [1:0] ra_addr,
+                  input [1:0] rb_addr,
+                  input [1:0] rd_addr,
+                  input [7:0] result,
+                  output [7:0] op1,
+                  output [7:0] op2,
+                  output [7:0] reg1,
+                  output [7:0] reg2,
+                  output [7:0] reg3,
+                  output [7:0] reg4
+);
+reg [7:0] reg_array [3:0];
+
+always @(clk)
+begin
+if(result)
+       reg_array[rd_addr]=result;
+end
+
+assign op1 = reg_array[ra_addr];
+assign op2 = reg_array[rb_addr];
+assign reg1 = reg_array[0];
+assign reg2 = reg_array[1];
+assign reg3 = reg_array[2];
+assign reg4 = reg_array[3];
+
+endmodule
