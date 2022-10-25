@@ -17,7 +17,7 @@ begin
                   ALU_OP_MOV : result = memval;
                   ALU_OP_ADD : result = op1 + op2;
                   ALU_OP_SUBS : result = op1 - op2;
-                  ALU_OP_AND : result = op1 & op2;
+                  ALU_OP_AND : result = op1 * op2;
                   default : result = 7'b0;
 
       endcase
