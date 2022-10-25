@@ -8,7 +8,7 @@ module control_unit(
                         output reg [3:0] memval
                         );
 
-always @(clk)
+always @(posedge clk)
 begin
         opcode [1:0] = inst[7:6];
         rd_addr [1:0] = inst[5:4];
