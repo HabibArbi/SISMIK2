@@ -1,0 +1,25 @@
+module alu(
+                input clk,
+                input [7:0] op1,
+                input [7:0] op2,
+                input [1:0] opcode,
+                input [3:0] memval,
+                output reg[7:0] result
+);
+parameter           ALU_OP_MOV = 2'b00,
+                    ALU_OP_ADD = 2'b01,
+                    ALU_OP_SUBS = 2'b10,
+                    ALU_OP_AND = 2'b11;
+
+always @(clk)
+begin
+      case(opcode)
+                  ALU_OP_MOV : result = memval;
+                  ALU_OP_ADD : result = op1 + op2;
+                  ALU_OP_SUBS : result = op1 - op2;
+                  ALU_OP_AND : result = op1 & op2;
+                  default : result = 7'b0;
+
+      endcase
+end
+endmodule
