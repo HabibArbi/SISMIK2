@@ -1,0 +1,35 @@
+module cpu(
+                input clk,
+                input [7:0] inst,
+                output[7:0] result,
+                output[7:0] reg1,
+                output[7:0] reg2,
+                output[7:0] reg3,
+                output[7:0] reg4
+);
+wire [1:0] ra_addr;
+wire [1:0] rb_addr;
+wire [1:0] rd_addr;
+wire [1:0] opcode;
+wire [7:0] op1;
+wire [7:0] op2;
+wire [7:0] hasil;
+wire [3:0] memval;
+wire [7:0] regg1;
+wire [7:0] regg2;
+wire [7:0] regg3;
+wire [7:0] regg4;
+
+control_unit
+       control_unit(clk,inst,ra_addr,rb_addr,rd_addr,opcode,memval);
+regfile
+       regfile(clk,ra_addr,rb_addr,rd_addr,hasil,op1,op2,regg1,regg2,regg3,regg4);
+alu                            alu(clk,op1,op2,opcode,memval,hasil);
+
+assign result = hasil;
+assign reg1 = regg1;
+assign reg2 = regg2;
+assign reg3 = regg3;
+assign reg4 = regg4;
+
+endmodule
